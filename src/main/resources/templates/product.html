@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1><a th:href="@{/}">MARKETPLACE</a></h1>
+    <h1>Welcome,  <span th:text="${#authentication.getName()}"></span>!</h1>
+    <div th:if="${user.email}">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="logout">
+        </form>
+        <div th:if="${user.getName().equalsIgnoreCase('ADMIN')}">
+            <a th:href="@{/admin}">Панель администратора</a>
+        </div>
+    </div>
+    <div th:if="${user.email == null}">
+        <a href="/login">Зарегистрироваться</a>
+    </div>
+    <HR>
+    <table>
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>title</td>
+                <td>price</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}">id</td>
+                <td th:text="${product.title}">title</td>
+                <td th:text="${product.price}">price</td>
+                <td><a th:href="@{/productInfo/{id}(id=${product.id})}">More details...</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+        <div th:if="${user.email}">
+            <form method="post" th:object="${product}" enctype="multipart/form-data">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>title:</td><td><input type="text" th:field="*{title}"></td>
+                    </tr>
+                    <tr>
+                        <td>description:</td><td><input type="text" th:field="*{description}"></td>
+                    </tr>
+                    <tr>
+                        <td>price:</td><td><input type="text" th:field="*{price}"></td>
+                    </tr>
+                    <tr>
+                        <td>city:</td><td><input type="text" th:field="*{city}"></td>
+                    </tr>
+                        <tr>
+                            <td>
+                                <input type="file" name="file1"><br>
+                                <input type="file" name="file2"><br>
+                                <input type="file" name="file3"><br>
+                            </td>
+                            <td><input type="submit"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+</body>
+</html>

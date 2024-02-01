@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1><a th:href="@{/}">MARKETPLACE</a></h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="logout">
+    </form>
+    <hr>
+    <div th:each="img : ${image}">
+        <img th:src="@{/images/{id}(id=${img.id})}" width="250px" height="150px">
+    </div>
+    <table>
+        <tbody>
+            <tr>
+              <td>title:</td><td th:text="${product.title}"></td>
+            </tr>
+            <tr>
+              <td>description:</td><td th:text="${product.description}"></td>
+            </tr>
+            <tr>
+              <td>price:</td><td th:text="${product.price}"></td>
+            </tr>
+            <tr>
+              <td>city:</td><td th:text="${product.city}"></td>
+            </tr>
+            <tr>
+                <td>author:</td><td><a th:href="@{/user/{id}(id=${product.user.id})}"  th:text="${product.user.name}"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

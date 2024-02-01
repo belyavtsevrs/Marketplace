@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1><a th:href="@{/}">MARKETPLACE</a></h1>
+    <HR>
+    <h2>Авторизация</h2>
+    <form th:action="@{/login}" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Эл. почта:</td><td><input type="text" name="username" placeholder="Username"/></td>
+                </tr>
+                <tr>
+                    <td>Пароль:</td><td><input type="password" name="password" placeholder="Password"/></td>
+                </tr>
+                <tr>
+                    <!--<input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+                    <td><input type="submit"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <a href="/registration">Зарегистрироваться</a>
+</body>
+</html>
